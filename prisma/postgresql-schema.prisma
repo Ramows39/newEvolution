@@ -335,7 +335,7 @@ model Typebot {
   ignoreJids      Json?
   triggerType     TriggerType?
   triggerOperator TriggerOperator?
-  triggerValue    String?
+  triggerValue    Json?
   Instance        Instance         @relation(fields: [instanceId], references: [id], onDelete: Cascade)
   instanceId      String
   TypebotSetting  TypebotSetting[]
@@ -409,7 +409,7 @@ model OpenaiBot {
   ignoreJids        Json?
   triggerType       TriggerType?
   triggerOperator   TriggerOperator?
-  triggerValue      String?
+  triggerValue      Json?
   createdAt         DateTime?        @default(now()) @db.Timestamp
   updatedAt         DateTime         @updatedAt @db.Timestamp
   OpenaiCreds       OpenaiCreds      @relation(fields: [openaiCredsId], references: [id], onDelete: Cascade)
@@ -494,7 +494,7 @@ model Dify {
   timePerChar     Int?             @default(50) @db.Integer
   triggerType     TriggerType?
   triggerOperator TriggerOperator?
-  triggerValue    String?
+  triggerValue    Json?
   createdAt       DateTime?        @default(now()) @db.Timestamp
   updatedAt       DateTime         @updatedAt @db.Timestamp
   Instance        Instance         @relation(fields: [instanceId], references: [id], onDelete: Cascade)
@@ -542,7 +542,7 @@ model EvolutionBot {
   timePerChar         Int?                  @default(50) @db.Integer
   triggerType         TriggerType?
   triggerOperator     TriggerOperator?
-  triggerValue        String?
+  triggerValue        Json?
   createdAt           DateTime?             @default(now()) @db.Timestamp
   updatedAt           DateTime              @updatedAt @db.Timestamp
   Instance            Instance              @relation(fields: [instanceId], references: [id], onDelete: Cascade)
@@ -590,7 +590,7 @@ model Flowise {
   timePerChar     Int?             @default(50) @db.Integer
   triggerType     TriggerType?
   triggerOperator TriggerOperator?
-  triggerValue    String?
+  triggerValue    Json?
   createdAt       DateTime?        @default(now()) @db.Timestamp
   updatedAt       DateTime         @updatedAt @db.Timestamp
   Instance        Instance         @relation(fields: [instanceId], references: [id], onDelete: Cascade)

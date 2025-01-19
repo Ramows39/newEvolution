@@ -37,7 +37,12 @@ export const openaiSchema: JSONSchema7 = {
     maxTokens: { type: 'integer' },
     triggerType: { type: 'string', enum: ['all', 'keyword', 'none', 'advanced'] },
     triggerOperator: { type: 'string', enum: ['equals', 'contains', 'startsWith', 'endsWith', 'regex'] },
-    triggerValue: { type: 'string' },
+    triggerValue: { 
+      oneOf: [
+        { type: 'string' },
+        { type: 'number' }
+      ] 
+    },
     expire: { type: 'integer' },
     keywordFinish: { type: 'string' },
     delayMessage: { type: 'integer' },

@@ -315,30 +315,30 @@ model Pusher {
   instanceId String    @unique
 }
 
-model Typebot {
-  id              String           @id @default(cuid())
-  enabled         Boolean          @default(true)
-  description     String?          @db.VarChar(255)
-  url             String           @db.VarChar(500)
-  typebot         String           @db.VarChar(100)
-  expire          Int?             @default(0) @db.Int
-  keywordFinish   String?          @db.VarChar(100)
-  delayMessage    Int?             @db.Int
-  unknownMessage  String?          @db.VarChar(100)
-  listeningFromMe Boolean?         @default(false)
-  stopBotFromMe   Boolean?         @default(false)
-  keepOpen        Boolean?         @default(false)
-  debounceTime    Int?             @db.Int
-  createdAt       DateTime?        @default(dbgenerated("CURRENT_TIMESTAMP")) @db.Timestamp
-  updatedAt       DateTime?        @updatedAt @db.Timestamp
-  ignoreJids      Json?
-  triggerType     TriggerType?
-  triggerOperator TriggerOperator?
-  triggerValue    String?
-  Instance        Instance         @relation(fields: [instanceId], references: [id], onDelete: Cascade)
-  instanceId      String
-  TypebotSetting  TypebotSetting[]
-}
+  model Typebot {
+    id              String           @id @default(cuid())
+    enabled         Boolean          @default(true)
+    description     String?          @db.VarChar(255)
+    url             String           @db.VarChar(500)
+    typebot         String           @db.VarChar(100)
+    expire          Int?             @default(0) @db.Int
+    keywordFinish   String?          @db.VarChar(100)
+    delayMessage    Int?             @db.Int
+    unknownMessage  String?          @db.VarChar(100)
+    listeningFromMe Boolean?         @default(false)
+    stopBotFromMe   Boolean?         @default(false)
+    keepOpen        Boolean?         @default(false)
+    debounceTime    Int?             @db.Int
+    createdAt       DateTime?        @default(dbgenerated("CURRENT_TIMESTAMP")) @db.Timestamp
+    updatedAt       DateTime?        @updatedAt @db.Timestamp
+    ignoreJids      Json?
+    triggerType     TriggerType?
+    triggerOperator TriggerOperator?
+    triggerValue    Json?
+    Instance        Instance         @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+    instanceId      String
+    TypebotSetting  TypebotSetting[]
+  }
 
 model TypebotSetting {
   id                String    @id @default(cuid())
@@ -427,7 +427,7 @@ model OpenaiBot {
   timePerChar       Int?             @default(50) @db.Int
   triggerType       TriggerType?
   triggerOperator   TriggerOperator?
-  triggerValue      String?
+  triggerValue      Json?
   createdAt         DateTime?        @default(dbgenerated("CURRENT_TIMESTAMP")) @db.Timestamp
   updatedAt         DateTime         @updatedAt @db.Timestamp
   OpenaiCreds       OpenaiCreds      @relation(fields: [openaiCredsId], references: [id], onDelete: Cascade)
@@ -493,7 +493,7 @@ model Dify {
   timePerChar     Int?             @default(50) @db.Int
   triggerType     TriggerType?
   triggerOperator TriggerOperator?
-  triggerValue    String?
+  triggerValue    Json?
   createdAt       DateTime?        @default(dbgenerated("CURRENT_TIMESTAMP")) @db.Timestamp
   updatedAt       DateTime         @updatedAt @db.Timestamp
   Instance        Instance         @relation(fields: [instanceId], references: [id], onDelete: Cascade)
@@ -541,7 +541,7 @@ model EvolutionBot {
   timePerChar         Int?                  @default(50) @db.Int
   triggerType         TriggerType?
   triggerOperator     TriggerOperator?
-  triggerValue        String?
+  triggerValue        Json?
   createdAt           DateTime?             @default(dbgenerated("CURRENT_TIMESTAMP")) @db.Timestamp
   updatedAt           DateTime              @updatedAt @db.Timestamp
   Instance            Instance              @relation(fields: [instanceId], references: [id], onDelete: Cascade)
@@ -589,7 +589,7 @@ model Flowise {
   timePerChar     Int?             @default(50) @db.Int
   triggerType     TriggerType?
   triggerOperator TriggerOperator?
-  triggerValue    String?
+  triggerValue    Json?
   createdAt       DateTime?        @default(dbgenerated("CURRENT_TIMESTAMP")) @db.Timestamp
   updatedAt       DateTime         @updatedAt @db.Timestamp
   Instance        Instance         @relation(fields: [instanceId], references: [id], onDelete: Cascade)
